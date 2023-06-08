@@ -33,7 +33,7 @@
         line-height: 6rem;
         letter-spacing: 1rem;
         max-width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 1rem;
         display: block;
         animation: leftToRight;
         animation-duration: 1.5s;
@@ -50,41 +50,41 @@
         max-width: 100%;
         animation: rightToLeft;
         animation-duration: 1.5s;
-        margin-bottom: 65px;
+        margin-bottom: 6.5rem;
         
     }
     @keyframes leftToRight {
         0%{
             opacity: 0;
-            transform: translateX(-100px);
+            transform: translateX(-10rem);
         }
         90%{
-            transform: translateX(10px);
+            transform: translateX(1rem);
         }
         100%{
             opacity: 1;
-            transform: translateX(0vh);
+            transform: translateX(0);
         }
         
     }
     @keyframes rightToLeft {
         0%{
             opacity: 0;
-            transform: translateX(100px);
+            transform: translateX(10rem);
         }
         90%{
-            transform: translateX(-10px);
+            transform: translateX(-1rem);
         }
         100%{
             opacity: 1;
-            transform: translateX(0vh);
+            transform: translateX(0);
         }
         
     }
     @keyframes downToUp{
         0%{
             opacity: 0;
-            transform: translateY(200px);
+            transform: translateY(20rem);
         }
         30%{
             opacity: .5;
@@ -95,18 +95,17 @@
         } 
     }
     &__button{
-        padding: 15px 0px;
+        @include styleBtn(red);
+
+        padding: 1.5rem 0;
         font-weight: 400;
         font-size: 2rem;
         line-height: 2.4rem;
         letter-spacing: .5rem;
-        color: $defoult;
         background-color:$white;
-        border-radius: 50px;
-        text-transform: uppercase;
+        border-radius: 5rem;
         text-align: center;
-        display: block;
-        max-width: 277px;
+        max-width: 27.7rem;
         letter-spacing: .5rem;
         margin: 0 auto;
         transition: all .1s ease-in-out;
@@ -116,12 +115,12 @@
         backface-visibility: hidden;
         
         &:hover{
-            transform: translateY(-4px);
-            box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.2));
+            transform: translateY(-.4rem);
+            box-shadow: $box-shadow;
         }
         &:active{
-            transform: translateY(-2px);
-            box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.1));
+            transform: translateY(-.2rem);
+            box-shadow: $box-shadow;
         }
     }
 }
