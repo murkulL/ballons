@@ -93,7 +93,7 @@
             box-shadow: $box-shadow;
         }
         &:active{
-            transform: translateY(-0.2rem);
+            transform: translateY(-0.2rem) ;
             box-shadow: $box-shadow;
         }
     }
