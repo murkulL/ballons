@@ -1,5 +1,20 @@
-@import "var.scss";
-@import "reset.scss";
+
+@import "abstracts/reset";
+@import "abstracts/mixin";
+@import "abstracts/var";
+@import "abstracts/functions";
+
+@import "base/animation";
+@import "base/base";
+@import "base/typography";
+@import "base/utilites";
+
+@import "layout/header";
+
+@import "pages/home";
+
+
+
 
 
 .header{
@@ -52,45 +67,6 @@
         animation-duration: 1.5s;
         margin-bottom: 6.5rem;
   
-    }
-    @keyframes leftToRight {
-        0%{
-            opacity: 0;
-            transform: translateX(-10rem);
-        }
-        90%{
-            transform: translateX(1rem);
-        }
-        100%{
-            opacity: 1;
-            transform: translateX(0);
-        }   
-    }
-    @keyframes rightToLeft {
-        0%{
-            opacity: 0;
-            transform: translateX(10rem);
-        }
-        90%{
-            transform: translateX(-1rem);
-        }
-        100%{
-            opacity: 1;
-            transform: translateX(0);
-        } 
-    }
-    @keyframes downToUp{
-        0%{
-            opacity: 0;
-            transform: translateY(20rem);
-        }
-        30%{
-            opacity: .5;
-        } 
-        100%{
-            opacity: 1;
-            transform: translateY(0);
-        } 
     }
     &__button{
         @include styleBtn($defoult);

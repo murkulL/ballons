@@ -25,6 +25,33 @@ a {
 .container {
   background: #f7f7f7; }
 
+@keyframes leftToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  90% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@keyframes rightToLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  90% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@keyframes downToUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20rem); }
+  30% {
+    opacity: .5; }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
 .header {
   position: relative;
   height: 90vh;
@@ -70,33 +97,6 @@ a {
     animation: rightToLeft;
     animation-duration: 1.5s;
     margin-bottom: 6.5rem; }
-@keyframes leftToRight {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem); }
-  90% {
-    transform: translateX(1rem); }
-  100% {
-    opacity: 1;
-    transform: translateX(0); } }
-@keyframes rightToLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem); }
-  90% {
-    transform: translateX(-1rem); }
-  100% {
-    opacity: 1;
-    transform: translateX(0); } }
-@keyframes downToUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20rem); }
-  30% {
-    opacity: .5; }
-  100% {
-    opacity: 1;
-    transform: translateY(0); } }
   .header__button {
     text-transform: uppercase;
     color: #777777;
