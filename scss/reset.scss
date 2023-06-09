@@ -9,10 +9,10 @@ html{
 body{
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    color: $defoult;
+    color: gray;
     letter-spacing: .2rem;
     padding: 5rem;
-    background-color: $white;
+    background-color: white;
     font-size: 1.6rem;
 }
 img{
@@ -23,5 +23,5 @@ a{
     text-decoration: none;
 }
 .container{
-    background: $background;
+    background: #f7f7f7;
 }
