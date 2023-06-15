@@ -255,3 +255,91 @@ SELECT DISTINCT product_name, quantity
 FROM products
 JOIN order_details USING(product_id)
 WHERE quantity = 10
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+--ПЕРВАЯ ЧАСТЬ DDL-(Date Definition Language)
+
+CREATE TABLE student (
+	
+	student_id serial,
+	first_name varchar,
+	last_name varchar,
+	birthday date,
+	phone varchar
+);
+
+CREATE TABLE cathedra(
+	
+	cathedra_id serial,
+	cathedra_name varchar,
+	dean varchar
+	
+);
+
+---------------------------
+
+ALTER TABLE student
+ADD COLUMN middle_name varchar; -- фамилия
+
+ALTER TABLE student 
+ADD COLUMN rating float; -- рейтинг ученика 
+
+ALTER TABLE student 
+ADD COLUMN enrolled date; -- дата когда студент был зачислен 
+
+
+
+ALTER TABLE student 
+DROP COLUMN middle_name --если хотим удалить столбец
+
+
+
+ALTER TABLE cathedra
+RENAME TO chair --если хотим переименовать таблицу chair == кафедра 
+
+
+
+ALTER TABLE chair
+RENAME cathedra_id TO chair_id  --если хотим переименовать колонку 
+
+
+
+ALTER TABLE student 
+ALTER COLUMN first_name SET DATA TYPE VARCHAR(64);-- изметить тип данных в колонке 
+ALTER TABLE student 
+ALTER COLUMN last_name SET DATA TYPE VARCHAR(64);-- изметить тип данных в колонке 
+ALTER TABLE student 
+ALTER COLUMN phone SET DATA TYPE VARCHAR(30);-- изметить тип данных в колонке 
+
+
+CREATE TABLE faculty(
+	
+	faculty_id serial,-- serial тип данных как integer только добавляет функционал автоинкремента
+					  -- это тоже саое что и IDENTITY только с небольшим отличием 
+	faculty_name varchar
+);
+INSERT INTO faculty (faculty_name)-- если тип данных serial тогда нужно точно 
+								  -- указывать куда мы вставляем данные 
+VALUES 
+('faculty 1'),
+('faculty 2'),
+('faculty 3');
+
+SELECT *
+FROM faculty
+
+TRUNCATE TABLE faculty -- стирает данные но не рестартит полностью,
+					   -- faculty_id при внисении новых данных будет начитаться не с (1,2,3) а с (4,5,6)
+					   
+TRUNCATE TABLE faculty RESTART IDENTITY -- доп функционал ПЕРЕЗАПУСТИТЬ ИДЕНТИФИКАЦИЮ, faculty_id будет начитаться с (1,2,3)
+-- потому что в PostgreSQL по умолчанию используется команда CONTINUE IDENTITY !!!
+
+DROP TABLE faculty
