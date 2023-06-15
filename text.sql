@@ -84,3 +84,22 @@ FROM orders
 FULL JOIN customers ON customers.customer_id = orders.customer_id
 WHERE order_id IS NULL
 ORDER BY order_id DESC
+
+
+
+
+-------------------------------------------------------------
+SELECT *
+FROM employees
+WHERE EXISTS (
+  SELECT 1
+  FROM orders
+  WHERE orders.employee_id = employees.employee_id
+);
+
+-- Использование SELECT 1 вместо SELECT * или выбора конкретных
+-- столбцов является хорошей практикой в таких случаях, поскольку
+-- оно эффективнее с точки зрения производительности. Запрос
+-- SELECT 1 возвращает только одно значение "1" для каждой 
+-- строки, в то время как SELECT * вернул бы все столбцы таблицы
+-- "orders", что может потребовать больше ресурсов для выполнения запроса.
