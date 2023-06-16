@@ -343,3 +343,119 @@ TRUNCATE TABLE faculty RESTART IDENTITY -- доп функционал ПЕРЕ�
 -- потому что в PostgreSQL по умолчанию используется команда CONTINUE IDENTITY !!!
 
 DROP TABLE faculty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------1
+CREATE TABLE teacher(
+	teacher_id serial,
+	first_name varchar,
+	last_name varchar,
+	birthday date,
+	phone varchar,
+	title varchar
+);
+
+
+
+--------2
+
+ALTER TABLE teacher
+ADD COLUMN middle_name varchar
+
+--------3
+
+ALTER TABLE teacher
+DROP COLUMN middle_name
+
+
+--------4
+
+ALTER TABLE teacher
+RENAME birthday TO birth_date
+
+--------5
+
+ALTER TABLE teacher
+ALTER COLUMN phone SET DATA TYPE varchar(32)
+
+
+--------6
+--------7
+--------8
+CREATE TABLE exam(
+	
+	exam_id serial,
+	exam_name varchar(256),
+	exam_date date
+);
+INSERT INTO exam (exam_name, exam_date)
+VALUES 
+('MATH','1999-09-30'),
+('MATH','1999-09-30'),
+('MATH','1999-09-30'),
+('MATH','1999-09-30');
+
+select * 
+from exam
+
+--------9
+
+TRUNCATE TABLE exam RESTART IDENTITY
+
+
+DROP TABLE chair
+-------------------------------------------------------
+CREATE TABLE chair
+(
+	chair_id serial PRIMARY KEY,-- PRIMARY KEY гарантирует что я не смогу вставить дублекат в эту колону
+								-- то есть накладывает ограничение УНИКАЛЬНОСТИ 
+								-- так же PRIMARY KEY запрещает всталять NULL
+	
+	chair_name varchar,
+	dean varchar
+);
+
+----------------------------------------------------------
+CREATE TABLE chair
+(
+	chair_id serial UNIQUE NOT NULL --UNIQUE(уникальный) по свойствам тоже самое за одним исключением 
+									-- у UNIQUE нет поумолчанию NOT NULL ,нужно задавать отдельно 
+	
+	chair_name varchar,
+	dean varchar
+);
+
+-----------------------------------------------------------------------
+INSERT INTO chair 
+VALUES 
+
+(2, 'name', 'dean')
+
+
+SELECT *
+FROM chair
+
+
+
+-- разница между UNIQUE NOT NULL и PRIMARY KEY в том что PRIMARY KEY на всю табличку может быть только один
+-- а UNIQUE и UNIQUE NOT NULL может быть более чем на одну колонку наложить ограничение по уникальности
+-- в любом случае PRIMARY KEY пользуються что бы иксплицидно пометить где у нас первичный ключь
+-- который используется для связки со внешним ключем и уникально идентифицирует сроку в целой таблице
+--
+-- в общем и целом существенной разницы между UNIQUE NOT NULL и PRIMARY KEY нет 
+--
+--
