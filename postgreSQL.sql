@@ -459,3 +459,91 @@ FROM chair
 -- в общем и целом существенной разницы между UNIQUE NOT NULL и PRIMARY KEY нет 
 --
 --
+
+
+
+
+
+
+-- есть кусочек кода с помощью которого мы можем вывести имена которые даны ограничением 
+
+SELECT constraint_name
+FROM information_schema.key_column_usage
+WHERE table_name = 'chair'
+	AND table_schema = 'public'
+	AND column_name = 'chair_id'
+	
+	
+--1 SELECT constraint_name - выбираются значения столбца constraint_name.
+--2 FROM information_schema.key_column_usage - таблица, из которой выбираются данные, называется information_schema.key_column_usage. Эта таблица содержит информацию о столбцах, используемых в ключевых ограничениях (primary key, foreign key) в базе данных.
+--3 WHERE table_name = 'chair' - условие, что мы ищем информацию для таблицы с именем 'chair'.
+--4 AND table_schema = 'public' - условие, что таблица находится в схеме с именем 'public'.
+--5 AND column_name = 'chair_id' - условие, что мы ищем информацию для столбца с именем 'chair_id'.
+
+ALTER TABLE chair 
+ADD PRIMARY KEY (chair_id)-- добавляем ограничения
+
+ALTER TABLE chair 
+DROP CONSTRAINT chair_id-- удаляем ограничения
+
+
+---------------------------------------------------
+
+
+
+
+--ВНЕШНИЕ КЛЮЧИ (которые так же включают в себя ограничения)
+
+
+CREATE TABLE publisher
+
+(
+	publisher_id INT, 
+	publisher_name varchar(128) NOT NULL,
+	address text,
+	CONSTRAINT PK_publisher_publisher_id PRIMARY KEY(publisher_id)
+ -- CONSTRAINT FK_book_publisher FOREIGN KEY(publisher_id) REFERENCES publisher(publisher_id)
+);
+
+ALTER TABLE book 
+DROP CONSTRAINT FK_book_publisher -- удалить ограничения 
+
+CREATE TABLE book
+(
+	book_id int,
+	title text NOT NULL ,
+	isbs VARCHAR(32) NOT NULL,
+	publisher_id int,
+	
+	CONSTRAINT PK_book_book_id PRIMARY KEY(book_id)
+	
+);
+
+
+INSERT INTO publisher
+VALUES 
+(1, 'Evetyman''s Library', 'NY'),
+(2, 'Evetyman''s Library', 'NY'),
+(3, 'Evetyman''s Library', 'NY'),
+(4, 'Evetyman''s Library', 'NY'),
+(5, 'Evetyman''s Library', 'NY'),
+(6, 'Evetyman''s Library', 'NY');
+
+
+
+INSERT INTO book
+VALUES 
+(1, 'Evetyman''s Library', '234234234234', 10) -- колонка ссылаеться на не верную колону 
+
+
+TRUNCATE TABLE book 
+
+
+select *
+from book
+
+
+ALTER TABLE book 
+ADD CONSTRAINT FK_book_publisher FOREIGN KEY(publisher_id) REFERENCES publisher(publisher_id)
+-- что бы вносить правельные ссылки на publisher нужно писать следующий код 
+-- что бы не нарушать ограничения внешнего ключа 
